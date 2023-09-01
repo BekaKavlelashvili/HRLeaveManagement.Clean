@@ -51,6 +51,7 @@ namespace HR.LeaveManagement.Api.Controllers
 
             return CreatedAtAction(nameof(Get), new { id = response });
         }
+
         // PUT api/<LeaveAllocationController>/5
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
