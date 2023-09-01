@@ -16,7 +16,7 @@ namespace HR.LeaveManagement.Application.Features.LeaveAllocation.Commands.Creat
         {
             this._leaveTypeRepository = leaveTypeRepository;
 
-            RuleFor(x => x.LeaveTypeId).GreaterThan(0).MustAsync(LeaveTypeMustExist).WithMessage("{propertyName} does not exist");
+            RuleFor(x => x.LeaveTypeId).GreaterThan(0).MustAsync(LeaveTypeMustExist).WithMessage("{PropertyName} does not exist");
         }
 
         private async Task<bool> LeaveTypeMustExist(int id, CancellationToken cancellationToken)
