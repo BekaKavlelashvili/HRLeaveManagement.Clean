@@ -39,12 +39,22 @@ namespace HR.LeaveManagement.Application.UnitTests.Mocks
 
             mockRepo.Setup(x => x.GetAsync()).ReturnsAsync(leaveTypes);
 
+            int id = 1;
+            mockRepo.Setup(x => x.GetByIdAsync(id)).ReturnsAsync(leaveTypes.FirstOrDefault(x => x.Id == id));
+
             mockRepo.Setup(x => x.CreateAsync(It.IsAny<LeaveType>()))
-                .Returns((LeaveType leaveType) =>
-                {
-                    leaveTypes.Add(leaveType);
-                    return Task.CompletedTask;
-                });
+            .Returns((LeaveType leaveType) =>
+            {
+                leaveTypes.Add(leaveType);
+                return Task.CompletedTask;
+            });
+
+            mockRepo.Setup(x => x.DeleteAsync(It.IsAny<LeaveType>()))
+            .Returns((LeaveType leaveType) =>
+            {
+                leaveTypes.Remove(leaveType);
+                return Task.CompletedTask;
+            });
 
             return mockRepo;
         }
