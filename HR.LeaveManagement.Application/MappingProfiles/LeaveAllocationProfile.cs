@@ -5,6 +5,7 @@ using HR.LeaveManagement.Application.Features.LeaveAllocation.Queries.GetLeaveAl
 using HR.LeaveManagement.Application.Features.LeaveAllocation.Queries.GetLeaveAllocations;
 using HR.LeaveManagement.Application.Features.LeaveType.Commands.CreateLeaveType;
 using HR.LeaveManagement.Application.Features.LeaveType.Commands.UpdateLeaveType;
+using HR.LeaveManagement.Application.Features.LeaveType.Queries.GetAllLeaveTypes;
 using HR.LeaveManagement.Domain;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace HR.LeaveManagement.Application.MappingProfiles
         public LeaveAllocationProfile()
         {
             CreateMap<LeaveAllocationDto, LeaveAllocation>().ReverseMap();
+            CreateMap<LeaveType, LeaveTypeDto>().ReverseMap();
             CreateMap<LeaveAllocation, LeaveAllocationDetailsDto>();
             CreateMap<CreateLeaveAllocationCommand, LeaveAllocation>();
             CreateMap<UpdateLeaveAllocationCommand, LeaveAllocation>();

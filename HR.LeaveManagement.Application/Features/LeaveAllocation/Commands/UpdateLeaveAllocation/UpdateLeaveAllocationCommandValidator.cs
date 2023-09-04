@@ -31,7 +31,7 @@ namespace HR.LeaveManagement.Application.Features.LeaveAllocation.Commands.Updat
                         .WithMessage("{PropertyName} must be present");
         }
 
-        private async Task<bool> LeaveAllocationMustExist(int id, CancellationToken cancellationToken)
+        public async Task<bool> LeaveAllocationMustExist(int id, CancellationToken cancellationToken)
         {
             var leaveAllocation = await _leaveAllocationRepository.GetByIdAsync(id);
             return leaveAllocation != null;
