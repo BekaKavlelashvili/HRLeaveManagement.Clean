@@ -25,10 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\LeaveRequests\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\HR.LeaveManagement.Application\HR.LeaveManagement.Application.csproj" />
   </ItemGroup>
 
