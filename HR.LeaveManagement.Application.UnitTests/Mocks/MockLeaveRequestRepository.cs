@@ -69,7 +69,7 @@ namespace HR.LeaveManagement.Application.UnitTests.Mocks
                 });
 
 
-            //mockRepo.Setup(x => x.GetByIdAsync(id)).ReturnsAsync(leaveAllocations.FirstOrDefault(x => x.Id == id));
+            mockRepo.Setup(x => x.GetByIdAsync(id)).ReturnsAsync(leaveRequests.FirstOrDefault(x => x.Id == id));
 
             mockRepo.Setup(x => x.DeleteAsync(It.IsAny<LeaveRequest>()))
                 .Returns((LeaveRequest leaveRequest) =>
