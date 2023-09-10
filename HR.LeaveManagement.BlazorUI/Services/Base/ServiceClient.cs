@@ -17,6 +17,7 @@
 
 namespace HR.LeaveManagement.BlazorUI.Services.Base
 {
+    using System.Net.Http;
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.20.0.0 (NJsonSchema v10.9.0.0 (Newtonsoft.Json v13.0.0.0))")]
