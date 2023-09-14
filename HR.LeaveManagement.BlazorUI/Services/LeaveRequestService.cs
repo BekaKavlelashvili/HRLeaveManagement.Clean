@@ -18,11 +18,35 @@ namespace HR.LeaveManagement.BlazorUI.Services
 
         public async Task<Response<Guid>> CreateLeaveRequest(LeaveRequestVM leaveRequest)
         {
-            await AddBearerToken();
-            var createLeaveRequestCommand = _mapper.Map<CreateLeaveRequestCommand>(leaveRequest);
-            await _client.LeaveRequestPOSTAsync(createLeaveRequestCommand);
+            try
+            {
+                await AddBearerToken();
+                var response = new Response<Guid>();
+                CreateLeaveRequestCommand command = _mapper.Map<CreateLeaveRequestCommand>(leaveRequest);
 
-            return new Response<Guid> { Success = true };
+                await _client.LeaveRequestPOSTAsync(command);
+                return response;
+            }
+            catch (ApiException ex)
+            {
+                return ConvertApiExceptions<Guid>(ex);
+            }
+        }
+
+        public async Task<AdminLeaveRequestViewVM> GetAdminLeaveRequestList()
+        {
+            var leaveRequests = await _client.LeaveRequestAllAsync(isLoggedInUser: false);
+
+            var model = new AdminLeaveRequestViewVM
+            {
+                TotalRequests = leaveRequests.Count,
+                ApprovedRequests = leaveRequests.Count(x => x.Approved == true),
+                PendingRequests = leaveRequests.Count(x => x.Approved == null),
+                RejectedRequests = leaveRequests.Count(x => x.Approved == false),
+                LeaveRequests = _mapper.Map<List<LeaveRequestVM>>(leaveRequests)
+            };
+
+            return model;
         }
     }
 }

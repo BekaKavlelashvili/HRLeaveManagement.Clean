@@ -1,10 +1,15 @@
 ﻿using HR.LeaveManagement.Application.Features.LeaveType.Queries.GetAllLeaveTypes;
+using HR.LeaveManagement.Application.Models.Identity;
 using System.Reflection.Metadata.Ecma335;
 
 namespace HR.LeaveManagement.Application.Features.LeaveRequest.Queries.GetLeaveRequestList
 {
     public class LeaveRequestListDto
     {
+        public int Id { get; set; }
+
+        public Employee Employee { get; set; }
+
         public string RequestingEmployeeId { get; set; }
 
         public LeaveTypeDto LeaveType { get; set; }

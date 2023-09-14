@@ -2,6 +2,7 @@
 using HR.LeaveManagement.Domain;
 using HR.LeaveManagement.Persistence.DatabaseContext;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
 
 namespace HR.LeaveManagement.Persistence.Repositories
 {
@@ -14,7 +15,7 @@ namespace HR.LeaveManagement.Persistence.Repositories
 
         public async Task<List<LeaveRequest>> GetLeaveRequestsWithDetails()
         {
-            return await _context.LeaveRequests.Include(x => x.LeaveType).ToListAsync();
+            return await _context.LeaveRequests.Where(x=> !string.IsNullOrEmpty(x.RequestingEmployeeId)).Include(x => x.LeaveType).ToListAsync();
         }
 
         public async Task<List<LeaveRequest>> GetLeaveRequestsWithDetails(string userId)

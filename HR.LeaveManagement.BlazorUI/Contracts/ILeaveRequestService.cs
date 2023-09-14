@@ -6,5 +6,7 @@ namespace HR.LeaveManagement.BlazorUI.Contracts
     public interface ILeaveRequestService
     {
         Task<Response<Guid>> CreateLeaveRequest(LeaveRequestVM leaveRequest);
+
+        Task<AdminLeaveRequestViewVM> GetAdminLeaveRequestList();
     }
 }
