@@ -8,5 +8,9 @@ namespace HR.LeaveManagement.BlazorUI.Contracts
         Task<Response<Guid>> CreateLeaveRequest(LeaveRequestVM leaveRequest);
 
         Task<AdminLeaveRequestViewVM> GetAdminLeaveRequestList();
+
+        Task<LeaveRequestVM> GetLeaveRequest(int id);
+
+        Task ApproveLeaveRequest(int id, bool approvalStatus);
     }
 }

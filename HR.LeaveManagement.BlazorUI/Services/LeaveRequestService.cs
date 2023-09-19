@@ -48,5 +48,25 @@ namespace HR.LeaveManagement.BlazorUI.Services
 
             return model;
         }
+
+        public async Task<LeaveRequestVM> GetLeaveRequest(int id)
+        {
+            var leaveRequest = await _client.LeaveRequestGETAsync(id);
+            return _mapper.Map<LeaveRequestVM>(leaveRequest);
+        }
+
+        public async Task ApproveLeaveRequest(int id, bool approvalStatus)
+        {
+            try
+            {
+                var request = new ChangeLeaveRequestApprovalCommand { Approved = approvalStatus, Id = id };
+                await _client.UpdateApprovalAsync(request);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }

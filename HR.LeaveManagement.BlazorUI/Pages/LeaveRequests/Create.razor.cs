@@ -20,7 +20,7 @@ namespace HR.LeaveManagement.BlazorUI.Pages.LeaveRequests
             LeaveTypeVMs = await LeaveTypeService.GetLeaveTypes();
         }
 
-        private async void HandleValidSubmit()
+        private async Task HandleValidSubmit()
         {
             await LeaveRequestService.CreateLeaveRequest(LeaveRequest);
             NavigationManager.NavigateTo("/leaverequests/");
